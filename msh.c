@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include <unistd.h>	// Linux library
+#include <unistd.h>	// Unix library
 
 // Max length input string
 #define MAXSTR 200
