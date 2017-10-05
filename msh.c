@@ -1,5 +1,5 @@
-// Title: msh5.c
-// Abstract: This program further expands msh (a Linux shell) functionality
+// Title: msh.c
+// Abstract: This program further expands msh (a Unix shell) functionality
 //			 by adding redirection.
 // Author: Joseph Martineau
 // Class: CST334 - Operating Systems
