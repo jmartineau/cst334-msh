@@ -1,6 +1,6 @@
 // Title: msh.c
 // Abstract: This program further expands msh (a Unix shell) functionality
-//			 by adding redirection.
+//	     by adding redirection.
 // Author: Joseph Martineau
 // Class: CST334 - Operating Systems
 // Date: 09/26/2017
@@ -238,9 +238,11 @@ int process_input(char *user_input)
 				if (strcmp(token_to_compare, ">") == 0 && token != NULL)
 				{
 					char *file_to_open = strdup(token);
-					out = open(file_to_open, O_WRONLY | O_TRUNC | O_CREAT, S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR);	// Open output file
-					dup2(out, 1);						// Redirect file descriptor 1 (stdout) to file
-					close(out);						// Close file descriptor after redirection
+					// Open output file
+					out = open(file_to_open, O_WRONLY | O_TRUNC | O_CREAT, S_IRUSR 
+						   | S_IRGRP | S_IWGRP | S_IWUSR);
+					dup2(out, 1);		// Redirect file descriptor 1 (stdout) to file
+					close(out);		// Close file descriptor after redirection
 					
 					// Handle redirection token and outfile so execvp does not run it
 					token = strtok(NULL, search);
