@@ -125,7 +125,7 @@ void print_date()
 	char month[11];
 	char year[5];
 	
-	time(&timer);						// Returns system time since epoch
+	time(&timer);				// Returns system time since epoch
 	tm_info = localtime(&timer);		// Fills tm_info with local time info
 	
 	// Formats time from tm_info as a string
@@ -155,8 +155,8 @@ int process_input(char *user_input)
 	}
 	
 	// Deal with whitespace before and after commands, also set up tokenization
-	char *token;							// Holds individual string token
-	char *search = " \t";					// Delimiter for "strtok" function
+	char *token;					// Holds individual string token
+	char *search = " \t";				// Delimiter for "strtok" function
 	token = strtok(user_input, search);		// Initialize token
    
 	// If the user enters 'exit' (case sensitive), end the program
@@ -224,7 +224,7 @@ int process_input(char *user_input)
 			
 			// Loop until entire string is tokenized
 			char *myargs[MAXARGS];	// Holds Linux command composed of string tokens
-			int i = 0;				// Counter for myargs
+			int i = 0;		// Counter for myargs
 			int in, out;
 			while (token != NULL)
 			{
@@ -240,7 +240,7 @@ int process_input(char *user_input)
 					char *file_to_open = strdup(token);
 					out = open(file_to_open, O_WRONLY | O_TRUNC | O_CREAT, S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR);	// Open output file
 					dup2(out, 1);						// Redirect file descriptor 1 (stdout) to file
-					close(out);							// Close file descriptor after redirection
+					close(out);						// Close file descriptor after redirection
 					
 					// Handle redirection token and outfile so execvp does not run it
 					token = strtok(NULL, search);
@@ -252,8 +252,8 @@ int process_input(char *user_input)
 				{
 					char *file_to_open = strdup(token);
 					in = open(file_to_open, O_RDONLY);	// Open input file
-					dup2(in, 0);						// Redirect file descriptor 0 (stdin) to file
-					close(in);							// Close file descriptor after redirection
+					dup2(in, 0);				// Redirect file descriptor 0 (stdin) to file
+					close(in);				// Close file descriptor after redirection
 					
 					// Handle redirection token and infile so execvp does not run it
 					token = strtok(NULL, search);
@@ -261,8 +261,8 @@ int process_input(char *user_input)
 				}
 			}
 			
-			myargs[i] = NULL;			// Marks end of array
-			execvp(myargs[0], myargs);  // Runs Linux command
+			myargs[i] = NULL;		// Marks end of array
+			execvp(myargs[0], myargs); 	// Runs Linux command
 			
 			// If we get to this line, execvp() failed
 			printf("%s: command not found\n", user_input);
